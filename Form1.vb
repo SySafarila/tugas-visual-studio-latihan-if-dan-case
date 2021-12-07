@@ -3,10 +3,15 @@
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         cbKodeBarang.Items.Add("001")
         cbKodeBarang.Items.Add("002")
+        tbTotalHarga.Enabled = False
+        tbNamaBarang.Enabled = False
+        tbHargaBarang.Enabled = False
+        tbTotalBayar.Enabled = False
     End Sub
 
     Private Sub btnIsiData_Click(sender As Object, e As EventArgs) Handles btnIsiData.Click
         tbTotalHarga.Text = tbHargaBarang.Text * tbJumlahBarang.Text
+        tbTotalBayar.Text = tbTotalHarga.Text - tbDiskon.Text
         MessageBox.Show(caraBayar)
     End Sub
 
@@ -16,5 +21,17 @@
 
     Private Sub rbKredit_CheckedChanged(sender As Object, e As EventArgs) Handles rbKredit.CheckedChanged
         caraBayar = "Kredit"
+    End Sub
+
+    Private Sub cbKodeBarang_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbKodeBarang.SelectedIndexChanged
+        Select Case cbKodeBarang.Text
+            Case "001"
+                tbNamaBarang.Text = "Sepatu"
+                tbHargaBarang.Text = 50000
+
+            Case "002"
+                tbNamaBarang.Text = "Sandal"
+                tbHargaBarang.Text = 7000
+        End Select
     End Sub
 End Class
